@@ -1,0 +1,25 @@
+const express = require("express");
+const app = express();
+
+app.get("/", function (req, res) {
+  res.send("hello");
+});
+
+app.use(function (req, res, next) {
+  res.send("I am middleware");
+  next();
+});
+
+app.post("/", function (req, res) {
+  res.send("bye");
+});
+
+app.get("/foo", function (req, res) {
+  res.send("I am Foo");
+});
+
+app.get("/:id", function (req, res) {
+  res.send("I am Foo with id " + req.params.id);
+});
+
+app.listen(3000);
